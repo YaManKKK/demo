@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SpringBootYaMan:war">
+    <output-path>$PROJECT_DIR$/SpringBootYaMan/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>SpringBootYaMan</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="SpringBootYaMan-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="SpringBootYaMan:war exploded" />
+    </root>
+  </artifact>
+</component>
