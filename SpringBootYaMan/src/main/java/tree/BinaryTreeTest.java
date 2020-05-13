@@ -17,15 +17,11 @@ public class BinaryTreeTest {
         tree.levelOrder(tree.getRoot());
         System.out.println("-----------下面是前序遍历方式-------------");
         tree.preOrder(tree.getRoot());
-        System.out.println("-----------下面是非递归前序遍历方式-------------");
-        tree.preOrder2(tree.getRoot());
         System.out.println("-----------下面是中序遍历方式-------------");
-        tree.inOrder(tree.getRoot());
-        System.out.println("-----------下面是非递归中序遍历方式-------------");
-        tree.inOrder2(tree.getRoot());
-        System.out.println("-----------下面是后序遍历方式-------------");
         tree.postOrder(tree.getRoot());
-        System.out.println("-----------下面是非递归后序遍历方式-------------");
+        System.out.println("-----------下面是后序遍历方式-------------");
         tree.postOrder2(tree.getRoot());
+
+        TreePrintUtil.show(tree.getRoot());
     }
 }

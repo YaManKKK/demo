@@ -5,7 +5,7 @@ import java.util.Stack;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- *
+ * 二叉树
  *
  * @author xb41101
  * @version Id: BinaryTree, v 0.1 2020/5/10 8:43 下午 yaman Exp $
@@ -15,7 +15,6 @@ public class BinaryTree<T> {
 
     /**
      * 创建节点
-     *
      * @param node
      * @param data
      */
@@ -25,16 +24,16 @@ public class BinaryTree<T> {
             root.setData(data);
         } else {
             if (Math.random() > 0.5) {
-                if (node.leftChild == null) {
-                    node.leftChild = new BinaryTreeNode<T>(data);
+                if (node.getLeftChild() == null) {
+                    node.setLeftChild(new BinaryTreeNode<T>(data));
                 } else {
-                    createTree(node.leftChild, data);
+                    createTree(node.getLeftChild(), data);
                 }
             } else {
-                if (node.rightChild == null) {
-                    node.rightChild = new BinaryTreeNode<T>(data);
+                if (node.getRightChild() == null) {
+                    node.setRightChild(new BinaryTreeNode<T>(data));
                 } else {
-                    createTree(node.rightChild, data);
+                    createTree(node.getRightChild(), data);
                 }
             }
         }
@@ -42,7 +41,6 @@ public class BinaryTree<T> {
 
     /**
      * 获取当前节点数据
-     *
      * @param current
      */
     public void visit(BinaryTreeNode<T> current) {
@@ -55,7 +53,6 @@ public class BinaryTree<T> {
 
     /**
      * 前序遍历
-     *
      * @param root
      */
     public void preOrder(BinaryTreeNode<T> root) {
@@ -63,13 +60,12 @@ public class BinaryTree<T> {
             return;
         }
         visit(root);
-        preOrder(root.leftChild);
-        preOrder(root.rightChild);
+        preOrder(root.getLeftChild());
+        preOrder(root.getRightChild());
     }
 
     /**
      * 前序遍历 非递归 根-》左-》右
-     *
      * @param root
      */
     public void preOrder2(BinaryTreeNode<T> root) {
@@ -81,11 +77,11 @@ public class BinaryTree<T> {
                 // 输出根节点
                 visit(pointer);
                 // 先保存右节点
-                if (pointer.rightChild != null) {
-                    stack.add(pointer.rightChild);
+                if (pointer.getRightChild() != null) {
+                    stack.add(pointer.getRightChild());
                 }
                 // 左节点作为根节点
-                pointer = pointer.leftChild;
+                pointer = pointer.getLeftChild();
             } else {
                 // 获取之前保存的右节点
                 pointer = stack.peek();
@@ -97,21 +93,19 @@ public class BinaryTree<T> {
 
     /**
      * 中序遍历
-     *
      * @param root
      */
     public void inOrder(BinaryTreeNode<T> root) {
         if (root == null) {
             return;
         }
-        inOrder(root.leftChild);
+        inOrder(root.getLeftChild());
         visit(root);
-        inOrder(root.rightChild);
+        inOrder(root.getRightChild());
     }
 
     /**
      * 中序遍历 非递归 左-》根-》右
-     *
      * @param root
      */
     public void inOrder2(BinaryTreeNode<T> root) {
@@ -120,11 +114,11 @@ public class BinaryTree<T> {
         while (!stack.isEmpty() || pointer != null) {
             if (pointer != null) {
                 stack.add(pointer);
-                pointer = pointer.leftChild;
+                pointer = pointer.getLeftChild();
             } else {
                 pointer = stack.peek();
                 visit(pointer);
-                pointer = pointer.rightChild;
+                pointer = pointer.getRightChild();
                 stack.pop();
             }
         }
@@ -132,21 +126,19 @@ public class BinaryTree<T> {
 
     /**
      * 后序遍历
-     *
      * @param root
      */
     public void postOrder(BinaryTreeNode<T> root) {
         if (root == null) {
             return;
         }
-        postOrder(root.leftChild);
-        postOrder(root.rightChild);
+        postOrder(root.getLeftChild());
+        postOrder(root.getRightChild());
         visit(root);
     }
 
     /**
      * 后序遍历 非递归 左-》右-》根
-     *
      * @param root
      */
     public void postOrder2(BinaryTreeNode<T> root) {
@@ -157,21 +149,20 @@ public class BinaryTree<T> {
             root = stack.pop();
             subStack.add(root);
             if (root.getLeftChild() != null) {
-                stack.push(root.getLeftChild());
+                stack.add(root.getLeftChild());
             }
             if (root.getRightChild() != null) {
                 stack.add(root.getRightChild());
             }
         }
         while (!subStack.isEmpty()) {
-            visit(subStack.pop());
+           visit(subStack.pop());
         }
     }
 
     /**
      * 广度优先遍历
      * 首节点-》左节点-》右节点
-     *
      * @param root
      */
     public void levelOrder(BinaryTreeNode<T> root) {
@@ -185,11 +176,11 @@ public class BinaryTree<T> {
             pointer = queue.peek();
             visit(pointer);
             queue.remove();
-            if (pointer.leftChild != null) {
-                queue.add(pointer.leftChild);
+            if (pointer.getLeftChild() != null) {
+                queue.add(pointer.getLeftChild());
             }
-            if (pointer.rightChild != null) {
-                queue.add(pointer.rightChild);
+            if (pointer.getRightChild() != null) {
+                queue.add(pointer.getRightChild());
             }
         }
     }
@@ -201,5 +192,14 @@ public class BinaryTree<T> {
      */
     public BinaryTreeNode<T> getRoot() {
         return root;
+    }
+
+    /**
+     * Setter method for property <tt>root</tt>.
+     *
+     * @param root value to be assigned to property root
+     */
+    public void setRoot(BinaryTreeNode<T> root) {
+        this.root = root;
     }
 }

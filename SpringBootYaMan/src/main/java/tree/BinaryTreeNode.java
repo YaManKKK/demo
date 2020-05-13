@@ -27,13 +27,13 @@ public class BinaryTreeNode<T> {
     }
 
     /** 数据 */
-    T                 data;
+    private T                 data;
 
     /** 左节点 */
-    BinaryTreeNode<T> leftChild;
+    private BinaryTreeNode<T> leftChild;
 
     /** 右节点 */
-    BinaryTreeNode<T> rightChild;
+    private BinaryTreeNode<T> rightChild;
 
     /**
      * Getter method for property <tt>data</tt>.
