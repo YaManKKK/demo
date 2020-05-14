@@ -10,7 +10,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * @author xb41101
  * @version Id: BinaryTree, v 0.1 2020/5/10 8:43 下午 yaman Exp $
  */
-public class BinaryTree<T> {
+public class BinaryTree<T extends Comparable<T>> {
     private BinaryTreeNode<T> root;
 
     /**
@@ -20,7 +20,7 @@ public class BinaryTree<T> {
      */
     public void createTree(BinaryTreeNode<T> node, T data) {
         if (root == null) {
-            root = new BinaryTreeNode<T>();
+            root = new BinaryTreeNode<>();
             root.setData(data);
         } else {
             if (Math.random() > 0.5) {

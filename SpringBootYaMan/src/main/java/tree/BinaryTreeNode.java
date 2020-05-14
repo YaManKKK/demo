@@ -6,7 +6,7 @@ package tree;
  * @author xb41101
  * @version Id: BinaryTreeNode, v 0.1 2020/5/9 5:28 下午 yaman Exp $
  */
-public class BinaryTreeNode<T> {
+public class BinaryTreeNode<T extends Comparable<T>> {
 
     public BinaryTreeNode() {
         this.data = null;

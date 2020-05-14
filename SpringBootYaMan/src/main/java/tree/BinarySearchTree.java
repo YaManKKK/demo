@@ -6,23 +6,23 @@ package tree;
  * @author xb41101
  * @version Id: BinarySearchTree, v 0.1 2020/5/12 9:06 下午 yaman Exp $
  */
-public class BinarySearchTree extends BinaryTree {
+public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree {
 
     /**
      * 插入节点
      * @param data
      */
-    public void insert(int data) {
-        BinaryTreeNode<Integer> node = new BinaryTreeNode<>();
+    public void insert(T data) {
+        BinaryTreeNode<T> node = new BinaryTreeNode<>();
         node.setData(data);
         if (getRoot() == null) {
             setRoot(node);
         } else {
-            BinaryTreeNode<Integer> currentNode = getRoot();
-            BinaryTreeNode<Integer> parent;
+            BinaryTreeNode<T> currentNode = getRoot();
+            BinaryTreeNode<T> parent;
             while (true) {
                 parent = currentNode;
-                if (data < currentNode.getData()) {
+                if (data.compareTo(currentNode.getData()) < 0) {
                     currentNode = currentNode.getLeftChild();
                     if (currentNode == null) {
                         parent.setLeftChild(node);
@@ -44,14 +44,14 @@ public class BinarySearchTree extends BinaryTree {
      * @param data
      * @return
      */
-    public BinaryTreeNode find(int data) {
-        BinaryTreeNode<Integer> current = getRoot();
+    public BinaryTreeNode find(T data) {
+        BinaryTreeNode<T> current = getRoot();
         while (current.getData() != data) {
-            if (current.getData() < data) {
+            if (current.getData().compareTo(data) < 0) {
                 current = current.getLeftChild();
             }
 
-            if (current.getData() > data) {
+            if (current.getData().compareTo(data) > 0) {
                 current = current.getRightChild();
             }
 
@@ -70,9 +70,9 @@ public class BinarySearchTree extends BinaryTree {
      * 3.存在左右两个子节点 需要将左节点赋值给自己右节点最小的左节点
      * @param data
      */
-    public boolean delete(int data) {
-        BinaryTreeNode<Integer> current = getRoot();
-        BinaryTreeNode<Integer> parent = getRoot();
+    public boolean delete(T data) {
+        BinaryTreeNode<T> current = getRoot();
+        BinaryTreeNode<T> parent = getRoot();
         boolean isLeft = false;
         boolean isRight = false;
         // 遍历查找值
@@ -80,7 +80,7 @@ public class BinarySearchTree extends BinaryTree {
             parent = current;
             isLeft = false;
             isRight = false;
-            if (data < current.getData()) {
+            if (data.compareTo(current.getData()) < 0) {
                 current = current.getLeftChild();
                 isLeft = true;
             } else {
@@ -116,12 +116,12 @@ public class BinarySearchTree extends BinaryTree {
                 parent.setRightChild(current.getRightChild());
             }
             return true;
-        }else {
+        } else {
             if (isLeft) {
                 parent.setLeftChild(current.getRightChild());
                 BinaryTreeNode currentNode = current.getRightChild();
                 BinaryTreeNode parentNode = currentNode;
-                while (parentNode.getLeftChild()!=null){
+                while (parentNode.getLeftChild() != null) {
                     parentNode = parentNode.getLeftChild();
                 }
                 parentNode.setLeftChild(current.getLeftChild());
@@ -129,7 +129,7 @@ public class BinarySearchTree extends BinaryTree {
                 parent.setRightChild(current.getRightChild());
                 BinaryTreeNode currentNode = current.getRightChild();
                 BinaryTreeNode parentNode = currentNode;
-                while (parentNode.getLeftChild()!=null){
+                while (parentNode.getLeftChild() != null) {
                     parentNode = parentNode.getLeftChild();
                 }
                 parentNode.setLeftChild(current.getLeftChild());
